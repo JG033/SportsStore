@@ -13,12 +13,13 @@ namespace Vic.SportsStore.WebApp.Controllers
     {
         private IProductsRepository repository;
         private IOrderProcessor orderProcessor;
-        
+
         public CartController(IProductsRepository repo, IOrderProcessor proc)
         {
             repository = repo;
             orderProcessor = proc;
         }
+
         public ViewResult Index(Cart cart, string returnUrl)
         {
             return View(new CartIndexViewModel
@@ -27,6 +28,7 @@ namespace Vic.SportsStore.WebApp.Controllers
                 Cart = cart
             });
         }
+
         public RedirectToRouteResult AddToCart(Cart cart, int productId, string returnUrl)
         {
             Product product = repository.Products
@@ -37,6 +39,7 @@ namespace Vic.SportsStore.WebApp.Controllers
             }
             return RedirectToAction("Index", new { returnUrl });
         }
+
         public RedirectToRouteResult RemoveFromCart(Cart cart, int productId, string returnUrl)
         {
             Product product = repository.Products
@@ -47,6 +50,7 @@ namespace Vic.SportsStore.WebApp.Controllers
             }
             return RedirectToAction("Index", new { returnUrl });
         }
+
         public PartialViewResult Summary(Cart cart)
         {
             return PartialView(cart);
@@ -56,6 +60,7 @@ namespace Vic.SportsStore.WebApp.Controllers
         {
             return View(new ShippingDetails());
         }
+
         [HttpPost]
         public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
         {
@@ -63,6 +68,7 @@ namespace Vic.SportsStore.WebApp.Controllers
             {
                 ModelState.AddModelError("", "Sorry, your cart is empty!");
             }
+
             if (ModelState.IsValid)
             {
                 orderProcessor.ProcessOrder(cart, shippingDetails);
@@ -74,5 +80,6 @@ namespace Vic.SportsStore.WebApp.Controllers
                 return View(shippingDetails);
             }
         }
+
     }
 }

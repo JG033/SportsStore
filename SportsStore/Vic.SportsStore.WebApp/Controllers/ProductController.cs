@@ -17,7 +17,7 @@ namespace Vic.SportsStore.WebApp.Controllers
          
         public ViewResult List(string category,int page=1)
         {
-            ProductsListViewModel model = new ProductsListViewModel
+             ProductsListViewModel model = new ProductsListViewModel
             {
                 Products = ProductsRepository
                 .Products

@@ -29,7 +29,7 @@ namespace Vic.SportsStore.WebApp
                 .RegisterInstance<IOrderProcessor>(new EmailOrderProcessor(new EmailSettings()))
                 .PropertiesAutowired();
 
-            var container = builder.Build();
+            var container = builder.Build(); 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }

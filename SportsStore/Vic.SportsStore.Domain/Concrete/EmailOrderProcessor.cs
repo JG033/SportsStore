@@ -27,12 +27,11 @@ namespace Vic.SportsStore.Domain.Concrete
                 smtpClient.Port = emailSettings.ServerPort;
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = new NetworkCredential(emailSettings.Username, emailSettings.Password);
-                
                 if (emailSettings.WriteAsFile)
                 {
                     if (!Directory.Exists(emailSettings.FileLocation))
                     {
-                        Directory.CreateDirectory(emailSettings.FileLocation);
+                        Directory.CreateDirectory(emailSettings.FileLocation); 
                     }
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
                     smtpClient.PickupDirectoryLocation = emailSettings.FileLocation;
@@ -63,7 +62,7 @@ namespace Vic.SportsStore.Domain.Concrete
                 shippingInfo.GiftWrap ? "Yes" : "No");
                 MailMessage mailMessage = new MailMessage(
                 emailSettings.MailFromAddress, // From
-                emailSettings.MailToAddress, // To
+                shippingInfo.Email, // To
                 "New order submitted!", // Subject
                 body.ToString()); // Body
                 if (emailSettings.WriteAsFile)

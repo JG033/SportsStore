@@ -11,8 +11,11 @@ namespace Vic.SportsStore.Domain.Entities
     {
         [Required(ErrorMessage = "Please enter a name")]
         public string Name { get; set; }
+        [Required(ErrorMessage ="please enter an email")]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Please enter the first address line")]
-        [Display(Name = "Line 1")]
+        [Display(Name = "Address Line 1")]
         public string Line1 { get; set; }
         [Display(Name = "Line 2")]
         public string Line2 { get; set; }
@@ -25,6 +28,7 @@ namespace Vic.SportsStore.Domain.Entities
         public string Zip { get; set; }
         [Required(ErrorMessage = "Please enter a country name")]
         public string Country { get; set; }
-        public bool GiftWrap { get; set; }
+        public bool GiftWrap { get; set; } 
+        
     }
 }
